@@ -6,6 +6,7 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
 function Result() {
+  document.title = 'Result | Emotion Analysis';
   const navigate = useNavigate();
 
   const handleBackButton = () => {

@@ -6,6 +6,7 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 function App() {
+  document.title = 'Home Page | Emotion Analysis';
   const [imageURL, setImageURL] = useState();
   const [preview, setPreview] = useState();
 
@@ -38,7 +39,7 @@ function App() {
   return (
     <Container maxW="container.lg" py={20}>
       <Heading fontSize="xl">Pilih gambar terlebih dahulu</Heading>
-      {imageURL && <Image mt={6} src={preview} alt="chosen" w="full" h={300} fit="fill" />}
+      {imageURL && <Image mt={6} src={preview} alt="chosen" h={300} fit="cover" mx="auto" />}
       <Input type="file" onChange={handleFileChange} accept="image/*" mt={10} />
       <Button w="full" mt={10} onClick={handleSubmit}>
         Analyze
