@@ -2,16 +2,22 @@ import { ArrowBackIcon } from '@chakra-ui/icons';
 import {
   Container, Flex, Heading, Table, TableContainer, Tbody, Td, Th, Thead, Tr,
 } from '@chakra-ui/react';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 function Result() {
   document.title = 'Result | Emotion Analysis';
   const navigate = useNavigate();
 
+  const [result, setResult] = useState([]);
+
   const handleBackButton = () => {
     navigate(-1);
   };
+
+  useEffect(() => {
+    setResult(JSON.parse(localStorage.getItem('result')));
+  }, []);
 
   return (
     <Container maxW="container.lg" py={20}>
@@ -30,11 +36,14 @@ function Result() {
             </Tr>
           </Thead>
           <Tbody>
-            <Tr>
-              <Td>1</Td>
-              <Td>Jajang</Td>
-              <Td>Marah (20%)</Td>
-            </Tr>
+            {result.map((res, idx) => (
+              // eslint-disable-next-line react/no-array-index-key
+              <Tr key={idx}>
+                <Td>{idx + 1}</Td>
+                <Td>{res.student_id}</Td>
+                <Td>{res.expression}</Td>
+              </Tr>
+            ))}
           </Tbody>
         </Table>
       </TableContainer>
